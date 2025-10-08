@@ -1,9 +1,9 @@
 <?php
 // Configuración de base de datos usando variables de entorno
-$host = $_ENV['DB_HOST'] ?? 'db';
-$dbname = $_ENV['DB_NAME'] ?? 'appdb';
-$username = $_ENV['DB_USER'] ?? 'appuser';
-$password = $_ENV['DB_PASSWORD'] ?? 'app123';
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_NAME'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASSWORD'];
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

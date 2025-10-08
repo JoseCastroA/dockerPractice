@@ -23,10 +23,10 @@ $stmt->execute([$nombre, $correo, $telefono, $tipo_consulta, $area, $mensaje]);
 #### **Variables de Entorno en db.php**
 ```php
 // ✅ CORRECTO: Usar variables de entorno
-$host = $_ENV['DB_HOST'] ?? 'db';
-$dbname = $_ENV['DB_NAME'] ?? 'appdb';
-$username = $_ENV['DB_USER'] ?? 'appuser';
-$password = $_ENV['DB_PASSWORD'] ?? 'app123';
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_NAME'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASSWORD'];
 
 // ❌ INCORRECTO: Credenciales hardcodeadas
 // $password = 'app123';  // Nunca hagas esto en producción
@@ -169,18 +169,18 @@ taller-docker-web/
 
 ```php
 <?php
-$host = 'db';                    // Nombre del servicio MySQL en Docker
-$dbname = 'appdb';              // Nombre de la base de datos
-$username = 'appuser';          // Usuario de la base de datos
-$password = 'app123';           // Contraseña del usuario (CAMBIAR por variable de entorno)
+$host = $_ENV['DB_HOST'];              // Nombre del servicio MySQL en Docker
+$dbname = $_ENV['DB_NAME'];            // Nombre de la base de datos
+$username = $_ENV['DB_USER'];          // Usuario de la base de datos
+$password = $_ENV['DB_PASSWORD'];      // Contraseña del usuario (CAMBIAR por variable de entorno)
 
 try {
     // Crear conexión PDO con MySQL
     $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    
+
     // Configurar PDO para lanzar excepciones en caso de error
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
 } catch (PDOException $e) {
     // Manejo de errores de conexión
     echo "Error de conexión: " . $e->getMessage();
