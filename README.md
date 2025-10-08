@@ -35,10 +35,10 @@ $password = $_ENV['DB_PASSWORD'] ?? 'app123';
 #### **Archivo .env (NO subir a repositorio)**
 ```bash
 # Archivo .env - Mantener local, no subir a Git
-MYSQL_ROOT_PASSWORD=MyS3cur3R00tP@ssw0rd!2025
+MYSQL_ROOT_PASSWORD=contraseña_segura_root
 MYSQL_DATABASE=appdb
 MYSQL_USER=appuser
-MYSQL_PASSWORD=App_Us3r_P@ssw0rd#2025
+MYSQL_PASSWORD=contraseña_segura_usuario
 TZ=America/Bogota
 ```
 
@@ -172,7 +172,7 @@ taller-docker-web/
 $host = 'db';                    // Nombre del servicio MySQL en Docker
 $dbname = 'appdb';              // Nombre de la base de datos
 $username = 'appuser';          // Usuario de la base de datos
-$password = 'app123';           // Contraseña del usuario
+$password = 'app123';           // Contraseña del usuario (CAMBIAR por variable de entorno)
 
 try {
     // Crear conexión PDO con MySQL
@@ -199,7 +199,7 @@ try {
 
 - **`$username` y `$password`**: Credenciales del usuario de MySQL, también definidas en `.env`:
   - `MYSQL_USER=appuser`
-  - `MYSQL_PASSWORD=app123`
+  - `MYSQL_PASSWORD=valor_desde_env`
 
 #### **2. Creación de la Conexión PDO**
 
@@ -316,8 +316,8 @@ nano .env  # o vim .env, code .env, etc.
 **⚠️ IMPORTANTE**: Personaliza las credenciales en `.env` antes de ejecutar:
 ```bash
 # Cambia estas contraseñas por valores seguros
-MYSQL_ROOT_PASSWORD=TuContraseñaSeguraRoot123!
-MYSQL_PASSWORD=TuContraseñaSeguraApp456#
+MYSQL_ROOT_PASSWORD=TuContraseñaSeguraRoot
+MYSQL_PASSWORD=TuContraseñaSeguraApp
 ```
 
 ### **3. Construir y Ejecutar los Contenedores**
@@ -338,13 +338,11 @@ docker-compose ps
 - **Base de Datos**: localhost:3306 (desde host)
 
 #### **Credenciales de phpMyAdmin**
-- **Usuario**: `appuser` (usuario de aplicación)
-- **Contraseña**: `app123`
+- **Usuario**: Ver archivo `.env` para credenciales actuales
+- **Contraseña**: Ver archivo `.env` para credenciales actuales
 - **Servidor**: `db` (automático)
 
-*También puedes usar las credenciales de root:*
-- **Usuario**: `root`
-- **Contraseña**: `root123`
+*Las credenciales están configuradas en el archivo `.env` que no se incluye en el repositorio por seguridad.*
 
 ### **5. Comandos Útiles**
 
@@ -862,6 +860,7 @@ MYSQL_ROOT_PASSWORD=cambiar_por_contraseña_segura
 MYSQL_DATABASE=appdb
 MYSQL_USER=appuser
 MYSQL_PASSWORD=cambiar_por_contraseña_segura
+TZ=America/Bogota
 ```
 
 ### **📋 Checklist antes de subir a Git**
